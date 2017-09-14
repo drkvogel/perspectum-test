@@ -132,3 +132,11 @@ analyse_lists.analyse(['g', 'gh', 'ghj', 'g'], ['j', 'ju', 'gh', 'gk', 'gn'])
 #         print "END"
 #         # print _unidiff_output(expected, capturedOutput.getvalue())
 #         self.assertTrue(expected == captured)
+
+        print 'Expected: \"'+ repr(expected) + '\"'
+        print "END"
+        print 'Captured: \"'+ repr(capturedOutput.getvalue()) + '\"'
+        print "END"
+        print "len(capturedOutput.getvalue()): " + str(len(capturedOutput.getvalue()))
+        print "type(capturedOutput.getvalue()): " + str(type(capturedOutput.getvalue()))
+        print self.unidiff_output(expected, capturedOutput.getvalue())
