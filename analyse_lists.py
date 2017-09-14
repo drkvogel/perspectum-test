@@ -55,7 +55,7 @@ def analyse(*lists):
             else:
                 occurrence_count[el] = occurrence_count[el] + 1
 
-    print 'Input: ' + str(lists)
+    # print 'Input: ' + str(lists)
     print 'Strings appearing in multiple lists: ',# + str(more_than_once)
     for i, key in enumerate(occurrence_count):
         if occurrence_count[key] > 1:

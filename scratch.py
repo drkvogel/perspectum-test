@@ -2,38 +2,15 @@
 #!/usr/bin/env python
 
 '''
-Brief - Test Lead (Python)
-
-Task Implementation
-
-Write a script containing a Python function which accepts any number of lists
- (1..n) as parameters, assuming the lists only contain character strings (e.g. ['a', 'b', 'bc']).
-
-The function should print out the following: -
-    Strings that appear in more than one list -
-    The total number of unique strings across all lists -
-    The total number of strings that were processed
-
-Test Case
-
-Write at least one test case, ensuring the example case below is verified:
-
-Input
-['g', 'gh', 'ghj', 'g'], ['j', 'ju', 'gh', 'gk', 'gn']
-
-Output
-
-Strings appearing in multiple lists: 'gh'
-Number of unique strings: 7
-Total number of strings processed: 9
-
-Please use either Bitbucket/GitHub, or provide a ZIP containing the application code
+Scratch file for development
 '''
 
 # print "Hello, World!"
 import sys # for sys.stdout.write
+import analyse_lists
+import StringIO
 
-def analyse_lists(*lists):
+def analyse_lists_local(*lists):
     # count = 0
     # more_than_once = 0
     # more_than_once = []
@@ -116,5 +93,42 @@ def analyse_lists(*lists):
     print 'Strings processed: ' + str(len(all_strings))
     print
 
-analyse_lists(['g', 'gh', 'ghj', 'g'], ['j', 'ju', 'gh', 'gk', 'gn'])
-analyse_lists(['g', 'gh', 'ghj', 'g', 'hh'], ['j', 'ju', 'gh', 'gk', 'gn'], ['g', 'ju', 'hh', 'hh'])
+def _unidiff_output(expected, actual):
+    """
+    Returns a string containing the unified diff of two multiline strings.
+    """
+    import difflib
+    expected = expected.splitlines(1)
+    actual = actual.splitlines(1)
+    diff = difflib.unified_diff(expected, actual)
+    return ''.join(diff)
+
+
+def capture_output(func, *args):
+    capturedOutput = StringIO.StringIO()          # create StringIO object
+    sys.stdout = capturedOutput                   # redirect stdout.
+    func(args)
+    # analyse_lists.analyse(['g', 'gh', 'ghj', 'g'], ['j', 'ju', 'gh', 'gk', 'gn'])
+    sys.stdout = sys.__stdout__                   # reset redirect
+    return capturedOutput.getvalue()
+
+analyse_lists_local(['g', 'gh', 'ghj', 'g'], ['j', 'ju', 'gh', 'gk', 'gn'])
+analyse_lists_local(['g', 'gh', 'ghj', 'g', 'hh'], ['j', 'ju', 'gh', 'gk', 'gn'], ['g', 'ju', 'hh', 'hh'])
+captured = capture_output(analyse_lists.analyse, ['g', 'gh', 'ghj', 'g'], ['j',  'ju', 'gh', 'gk', 'gn'])
+analyse_lists.analyse(['g', 'gh', 'ghj', 'g'], ['j', 'ju', 'gh', 'gk', 'gn'])
+# print captured
+
+    # def test_2(self):
+#     def test_captured(self):
+#         # captured = capture_output(analyse_lists.analyse(['g', 'gh', 'ghj', 'g'], ['j', 'ju', 'gh', 'gk', 'gn']))
+#         captured = self.capture_output(analyse_lists.analyse, ['g', 'gh', 'ghj', 'g'], ['j', 'ju', 'gh', 'gk', 'gn'])
+#         expected = """Strings appearing in multiple lists: , 'gh'
+# Number of unique strings: 7
+# Strings processed: 9
+# """
+#         print 'Expected: ', expected
+#         print "END"
+#         print 'Captured: ', captured
+#         print "END"
+#         # print _unidiff_output(expected, capturedOutput.getvalue())
+#         self.assertTrue(expected == captured)
