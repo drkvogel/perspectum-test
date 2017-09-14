@@ -18,10 +18,10 @@ class TestAnalyseLists(unittest.TestCase):
     #     return ''.join(diff)
 
     def test_1(self):
-        capturedOutput = StringIO.StringIO()          # create StringIO object
-        sys.stdout = capturedOutput                   # redirect stdout.
+        capturedOutput = StringIO.StringIO()
+        sys.stdout = capturedOutput
         analyse_lists.analyse(['g', 'gh', 'ghj', 'g'], ['j', 'ju', 'gh', 'gk', 'gn'])
-        sys.stdout = sys.__stdout__                   # reset redirect
+        sys.stdout = sys.__stdout__
         expected = """Strings appearing in multiple lists: , 'gh'
 Number of unique strings: 7
 Strings processed: 9
@@ -29,10 +29,10 @@ Strings processed: 9
         self.assertTrue(expected == capturedOutput.getvalue())
 
     def test_2(self):
-        capturedOutput = StringIO.StringIO()          # create StringIO object
-        sys.stdout = capturedOutput                   # redirect stdout.
+        capturedOutput = StringIO.StringIO()
+        sys.stdout = capturedOutput
         analyse_lists.analyse(['g', 'gh', 'ghj', 'g', 'hh'], ['j', 'ju', 'gh', 'gk', 'gn'], ['g', 'ju', 'hh', 'hh'])
-        sys.stdout = sys.__stdout__                   # reset redirect
+        sys.stdout = sys.__stdout__
         expected = """Strings appearing in multiple lists: 'g', 'ju', 'hh', 'gh'
 Number of unique strings: 8
 Strings processed: 14
@@ -41,10 +41,10 @@ Strings processed: 14
         self.assertTrue(expected == capturedOutput.getvalue())
 
     def test_3(self):
-        capturedOutput = StringIO.StringIO()          # create StringIO object
-        sys.stdout = capturedOutput                   # redirect stdout.
+        capturedOutput = StringIO.StringIO()
+        sys.stdout = capturedOutput
         analyse_lists.analyse(['g', 'gh', 'ghj', 'g', 'hh'])
-        sys.stdout = sys.__stdout__                   # reset redirect
+        sys.stdout = sys.__stdout__
         expected = """Strings appearing in multiple lists: 
 Number of unique strings: 4
 Strings processed: 5
@@ -52,10 +52,10 @@ Strings processed: 5
         self.assertTrue(expected == capturedOutput.getvalue())
 
     def test_4(self):
-        capturedOutput = StringIO.StringIO()          # create StringIO object
-        sys.stdout = capturedOutput                   # redirect stdout.
+        capturedOutput = StringIO.StringIO()
+        sys.stdout = capturedOutput
         analyse_lists.analyse(['x', 'y', 'z', 'z'], ['a', 'b', 'c', 'cc', 'ccc'], ['e', 'f', 'g', 'cc'], ['h', 'i', 'j', 'jj', 'jjj'], ['j', 'jj', 'jjj', 'cc', 'a'])
-        sys.stdout = sys.__stdout__                   # reset redirect
+        sys.stdout = sys.__stdout__
         expected = """Strings appearing in multiple lists: 'a', 'cc', 'j', 'jjj', 'jj'
 Number of unique strings: 16
 Strings processed: 23
@@ -63,10 +63,10 @@ Strings processed: 23
         self.assertTrue(expected == capturedOutput.getvalue())
 
     def test_5(self):
-        capturedOutput = StringIO.StringIO()          # create StringIO object
-        sys.stdout = capturedOutput                   # redirect stdout.
+        capturedOutput = StringIO.StringIO()
+        sys.stdout = capturedOutput
         analyse_lists.analyse()
-        sys.stdout = sys.__stdout__                   # reset redirect
+        sys.stdout = sys.__stdout__
         expected = """Strings appearing in multiple lists: 
 Number of unique strings: 0
 Strings processed: 0
