@@ -7,6 +7,19 @@ import analyse_lists
 
 class TestAnalyseLists(unittest.TestCase):
 
+    # capturedOutput = ''
+
+    # def setUp(self):
+    #     print "setUp"
+    #     self.capturedOutput = StringIO.StringIO()
+    #     sys.stdout = self.capturedOutput
+    #     print type(self.capturedOutput)
+
+    # def tearDown(self):
+    #     sys.stdout = sys.__stdout__
+    #     print "tearDown"
+    #     print 'Captured: \"'+ repr(self.capturedOutput.getvalue()) + '\"'
+
     def test_1(self):
         capturedOutput = StringIO.StringIO()
         sys.stdout = capturedOutput
@@ -16,7 +29,13 @@ class TestAnalyseLists(unittest.TestCase):
 Number of unique strings: 7
 Strings processed: 9
 """
+        # print 'Expected: \"'+ repr(expected) + '\"'
+        # print "END"
+        # print 'Captured: \"'+ repr(self.capturedOutput.getvalue()) + '\"'
+        # print "END"
+
         self.assertTrue(expected == capturedOutput.getvalue())
+        # self.assertTrue(expected == self.capturedOutput.getvalue())
 
     def test_2(self):
         capturedOutput = StringIO.StringIO()
@@ -77,16 +96,6 @@ Strings processed: 5
         # print 'Captured: \"'+ repr(capturedOutput.getvalue()) + '\"'
         # print "END"
         self.assertTrue(expected == capturedOutput.getvalue())
-
-# def unidiff_output(self, expected, actual):
-#     """
-#     Helper function for development. Returns a string containing the unified diff of two multiline strings.
-#     """
-#     import difflib
-#     expected = expected.splitlines(1)
-#     actual = actual.splitlines(1)
-#     diff = difflib.unified_diff(expected, actual)
-#     return ''.join(diff)
 
 if __name__ == '__main__':
     unittest.main()
