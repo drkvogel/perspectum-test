@@ -12,7 +12,7 @@ class TestAnalyseLists(unittest.TestCase):
         sys.stdout = capturedOutput
         analyse_lists.analyse(['g', 'gh', 'ghj', 'g'], ['j', 'ju', 'gh', 'gk', 'gn'])
         sys.stdout = sys.__stdout__
-        expected = """Strings appearing in multiple lists: , 'gh'
+        expected = """Strings appearing in multiple lists: 'gh'
 Number of unique strings: 7
 Strings processed: 9
 """
@@ -63,6 +63,30 @@ Strings processed: 0
 """
         self.assertTrue(expected == capturedOutput.getvalue())
 
+    def test_empty_lists(self):
+        capturedOutput = StringIO.StringIO()
+        sys.stdout = capturedOutput
+        analyse_lists.analyse(['a', 'b'], [], [], ['b', 'c'], [], ['b'])
+        sys.stdout = sys.__stdout__
+        expected = """Strings appearing in multiple lists: 'b'
+Number of unique strings: 3
+Strings processed: 5
+"""
+        # print 'Expected: \"'+ repr(expected) + '\"'
+        # print "END"
+        # print 'Captured: \"'+ repr(capturedOutput.getvalue()) + '\"'
+        # print "END"
+        self.assertTrue(expected == capturedOutput.getvalue())
+
+# def unidiff_output(self, expected, actual):
+#     """
+#     Helper function for development. Returns a string containing the unified diff of two multiline strings.
+#     """
+#     import difflib
+#     expected = expected.splitlines(1)
+#     actual = actual.splitlines(1)
+#     diff = difflib.unified_diff(expected, actual)
+#     return ''.join(diff)
 
 if __name__ == '__main__':
     unittest.main()
