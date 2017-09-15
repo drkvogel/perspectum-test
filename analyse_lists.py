@@ -37,16 +37,13 @@ def analyse(*lists):
     all_strings = []
     unique_strings = []
     occurrence_count = {}
+    lists_unique = list()
 
     for a_list in lists:
+        lists_unique.append(set(a_list)) # build list of lists where strings are unique in each list
         for string in a_list:
             all_strings.append(string)
     unique_strings = set(all_strings) # set of unique strings
-
-    # build list of lists where strings are unique in each list
-    lists_unique = list()
-    for i in range(0, len(lists)):
-        lists_unique.append(set(lists[i])) #
 
     # count occurrences of each string across all lists (containing unique strings)
     occurrence_count = dict()
@@ -69,14 +66,14 @@ def multiple_occurrence_generator(occurrence_count):
         if occurrence_count[key] > 1:
             yield key
 
-def test():
+def demo():
     analyse(['g', 'gh', 'ghj', 'g'], ['j', 'ju', 'gh', 'gk', 'gn'])
     analyse(['g', 'gh', 'ghj', 'g', 'hh'], ['j', 'ju', 'gh', 'gk', 'gn'], ['g', 'ju', 'hh', 'hh'])
     analyse(['g', 'gh', 'ghj', 'g', 'hh'])
     analyse(['a', 'b'], [], [], ['b', 'c', 'a'], [], ['b'])
 
 if __name__ == '__main__':
-    test()
+    demo()
 
 # print "occurrence_count: " + str(occurrence_count)
 # print 'Input: ' + str(lists)
