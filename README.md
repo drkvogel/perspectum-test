@@ -32,9 +32,11 @@ Please use either Bitbucket/GitHub, or provide a ZIP containing the application 
 ## Files
 
 `analyse_lists.py` contains the list-analysing function `analyse()`
-`test_analyse_lists.py` contains `unittest` tests (also compatible with `pytest`)
+
+`test_analyse_lists.py` contains automation tests in the `unittest` framework (also compatible with `pytest`, `nosetests` etc)
 
 ## Running
 
-Run ./analyse_tests.py to run some simple tests.
-Run ./test_analyse_lists.py to run unittest.
+Run `./analyse_tests.py` to run some simple tests.
+
+Run `./test_analyse_lists.py` to run unit tests.

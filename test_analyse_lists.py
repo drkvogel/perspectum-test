@@ -57,7 +57,7 @@ Strings processed: 0
         self.assertTrue(self.expected == self.captured.getvalue())
 
     def test_empty_lists(self):
-        analyse_lists.analyse(['a', 'b'], [], [], ['b', 'c'], [], ['b'])
+        analyse_lists.analyse([], ['a', 'b'], [], ['b', 'c'], [], ['b'])
         self.expected = """Strings appearing in multiple lists: 'b'
 Number of unique strings: 3
 Strings processed: 5
