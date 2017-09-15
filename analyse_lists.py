@@ -57,30 +57,31 @@ def analyse(*lists):
             else:
                 occurrence_count[el] = occurrence_count[el] + 1
 
-    # print 'Input: ' + str(lists)
-    # print "occurrence_count: " + str(occurrence_count)
     print 'Strings appearing in multiple lists: ',# + str(more_than_once)
+
     # for i, key in enumerate(occurrence_count):
     #     if occurrence_count[key] > 1:
     #         if i > 0:
     #             sys.stdout.write(', ') # no space, no newline
     #         sys.stdout.write('\'' + key + '\'')
 
+    # occurrence_generator = multiple_occurrence(occurrence_count)
+    # print '\', \''.join(occurrence_generator) # leaves trailing space...
+    # print ', '.join([])
+
     # print from generator
     occurrence_generator = multiple_occurrence(occurrence_count)
     for i, key in enumerate(occurrence_generator):
         if i > 0:
-            sys.stdout.write(', ') # no space, no newline
-        sys.stdout.write('\'' + key + '\'')
+            sys.stdout.write(', ') 
+        sys.stdout.write('\'' + key + '\'') # no space, no newline
     print
-    # print ', '.join(occurrence_generator)
-    # print ', '.join([])
     
     print 'Number of unique strings: ' + str(len(unique_strings))
     print 'Strings processed: ' + str(len(all_strings))
 
 def multiple_occurrence(occurrence_count):
-    """generate list of strings that appear more than once"""
+    """generator to list strings that appear more than once"""
     for i, key in enumerate(occurrence_count):
         if occurrence_count[key] > 1:
             yield key
@@ -93,3 +94,6 @@ def test():
 
 if __name__ == '__main__':
     test()
+
+# print "occurrence_count: " + str(occurrence_count)
+# print 'Input: ' + str(lists)
