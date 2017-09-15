@@ -56,31 +56,14 @@ def analyse(*lists):
                 occurrence_count[el] = 1
             else:
                 occurrence_count[el] = occurrence_count[el] + 1
+    multiple_occurrence = multiple_occurrence_generator(occurrence_count)
 
-    print 'Strings appearing in multiple lists: ',# + str(more_than_once)
-
-    # for i, key in enumerate(occurrence_count):
-    #     if occurrence_count[key] > 1:
-    #         if i > 0:
-    #             sys.stdout.write(', ') # no space, no newline
-    #         sys.stdout.write('\'' + key + '\'')
-
-    # occurrence_generator = multiple_occurrence(occurrence_count)
-    # print '\', \''.join(occurrence_generator) # leaves trailing space...
-    # print ', '.join([])
-
-    # print from generator
-    occurrence_generator = multiple_occurrence(occurrence_count)
-    for i, key in enumerate(occurrence_generator):
-        if i > 0:
-            sys.stdout.write(', ') 
-        sys.stdout.write('\'' + key + '\'') # no space, no newline
-    print
-    
+    print 'Strings appearing in multiple lists:', # join() leaves trailing space so omit here
+    print ', '.join('\'' + item + '\'' for item in multiple_occurrence) # add quotes for each item and join with comma
     print 'Number of unique strings: ' + str(len(unique_strings))
     print 'Strings processed: ' + str(len(all_strings))
 
-def multiple_occurrence(occurrence_count):
+def multiple_occurrence_generator(occurrence_count):
     """generator to list strings that appear more than once"""
     for i, key in enumerate(occurrence_count):
         if occurrence_count[key] > 1:
@@ -97,3 +80,19 @@ if __name__ == '__main__':
 
 # print "occurrence_count: " + str(occurrence_count)
 # print 'Input: ' + str(lists)
+
+    # print ', '.join([])
+
+    # print from generator
+    # occurrence_generator = multiple_occurrence(occurrence_count)
+    # for i, key in enumerate(occurrence_generator):
+    #     if i > 0:
+    #         sys.stdout.write(', ') 
+    #     sys.stdout.write('\'' + key + '\'') # no space, no newline
+    # print
+
+    # for i, key in enumerate(occurrence_count):
+    #     if occurrence_count[key] > 1:
+    #         if i > 0:
+    #             sys.stdout.write(', ') # no space, no newline
+    #         sys.stdout.write('\'' + key + '\'')

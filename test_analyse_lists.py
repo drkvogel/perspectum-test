@@ -13,8 +13,8 @@ class TestAnalyseLists(unittest.TestCase):
 
     def tearDown(self):
         sys.stdout = sys.__stdout__
-        print 'Expected: \"'+ repr(self.expected) + '\"'
-        print 'Captured: \"'+ repr(self.captured.getvalue()) + '\"'
+        # print 'Expected: \"'+ repr(self.expected) + '\"'
+        # print 'Captured: \"'+ repr(self.captured.getvalue()) + '\"'
 
     def test_1(self):
         analyse_lists.analyse(['g', 'gh', 'ghj', 'g'], ['j', 'ju', 'gh', 'gk', 'gn'])
