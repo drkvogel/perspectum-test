@@ -35,21 +35,23 @@ import sys # for sys.stdout.write
 
 def analyse(*lists):
     all_strings = []
-    list_unique = {}
+    unique_strings = []
     occurrence_count = {}
 
-    for lista in lists:
-        for el in lista:
-            all_strings.append(el)
-    list_unique = set(all_strings)
+    for a_list in lists:
+        for string in a_list:
+            all_strings.append(string)
+    unique_strings = set(all_strings) # set of unique strings
 
-    temp = list()
+    # build list of lists where strings are unique in each list
+    lists_unique = list()
     for i in range(0, len(lists)):
-        temp.append(set(lists[i])) #
+        lists_unique.append(set(lists[i])) #
 
+    # count occurrences of each string across all lists containing unique strings
     occurrence_count = dict()
-    for lista in temp:
-        for el in lista:
+    for a_list in lists_unique:
+        for el in a_list:
             if el not in occurrence_count.keys():
                 occurrence_count[el] = 1
             else:
@@ -62,9 +64,8 @@ def analyse(*lists):
             if i > 0:
                 sys.stdout.write(', ') # no space, no newline
             sys.stdout.write('\'' + key + '\'')
-
     print
-    print 'Number of unique strings: ' + str(len(list_unique))
+    print 'Number of unique strings: ' + str(len(unique_strings))
     print 'Strings processed: ' + str(len(all_strings))
 
 def test():

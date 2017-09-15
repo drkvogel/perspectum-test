@@ -93,16 +93,15 @@ def analyse_lists_local(*lists):
     print 'Strings processed: ' + str(len(all_strings))
     print
 
-def _unidiff_output(expected, actual):
+def unidiff_output(self, expected, actual):
     """
-    Returns a string containing the unified diff of two multiline strings.
+    Helper function for development. Returns a string containing the unified diff of two multiline strings.
     """
     import difflib
     expected = expected.splitlines(1)
     actual = actual.splitlines(1)
     diff = difflib.unified_diff(expected, actual)
     return ''.join(diff)
-
 
 def capture_output(func, *args):
     capturedOutput = StringIO.StringIO()          # create StringIO object
@@ -112,8 +111,8 @@ def capture_output(func, *args):
     sys.stdout = sys.__stdout__                   # reset redirect
     return capturedOutput.getvalue()
 
-analyse_lists_local(['g', 'gh', 'ghj', 'g'], ['j', 'ju', 'gh', 'gk', 'gn'])
-analyse_lists_local(['g', 'gh', 'ghj', 'g', 'hh'], ['j', 'ju', 'gh', 'gk', 'gn'], ['g', 'ju', 'hh', 'hh'])
+# analyse_lists_local(['g', 'gh', 'ghj', 'g'], ['j', 'ju', 'gh', 'gk', 'gn'])
+# analyse_lists_local(['g', 'gh', 'ghj', 'g', 'hh'], ['j', 'ju', 'gh', 'gk', 'gn'], ['g', 'ju', 'hh', 'hh'])
 captured = capture_output(analyse_lists.analyse, ['g', 'gh', 'ghj', 'g'], ['j',  'ju', 'gh', 'gk', 'gn'])
 analyse_lists.analyse(['g', 'gh', 'ghj', 'g'], ['j', 'ju', 'gh', 'gk', 'gn'])
 # print captured
@@ -133,10 +132,10 @@ analyse_lists.analyse(['g', 'gh', 'ghj', 'g'], ['j', 'ju', 'gh', 'gk', 'gn'])
 #         # print _unidiff_output(expected, capturedOutput.getvalue())
 #         self.assertTrue(expected == captured)
 
-        print 'Expected: \"'+ repr(expected) + '\"'
-        print "END"
-        print 'Captured: \"'+ repr(capturedOutput.getvalue()) + '\"'
-        print "END"
-        print "len(capturedOutput.getvalue()): " + str(len(capturedOutput.getvalue()))
-        print "type(capturedOutput.getvalue()): " + str(type(capturedOutput.getvalue()))
-        print self.unidiff_output(expected, capturedOutput.getvalue())
+# print 'Expected: \"'+ repr(expected) + '\"'
+# print "END"
+# print 'Captured: \"'+ repr(capturedOutput.getvalue()) + '\"'
+# print "END"
+# print "len(capturedOutput.getvalue()): " + str(len(capturedOutput.getvalue()))
+# print "type(capturedOutput.getvalue()): " + str(type(capturedOutput.getvalue()))
+# print self.unidiff_output(expected, capturedOutput.getvalue())

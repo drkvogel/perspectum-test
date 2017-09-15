@@ -7,16 +7,6 @@ import analyse_lists
 
 class TestAnalyseLists(unittest.TestCase):
 
-    # def unidiff_output(self, expected, actual):
-    #     """
-    #     Helper function for development. Returns a string containing the unified diff of two multiline strings.
-    #     """
-    #     import difflib
-    #     expected = expected.splitlines(1)
-    #     actual = actual.splitlines(1)
-    #     diff = difflib.unified_diff(expected, actual)
-    #     return ''.join(diff)
-
     def test_1(self):
         capturedOutput = StringIO.StringIO()
         sys.stdout = capturedOutput
@@ -62,7 +52,7 @@ Strings processed: 23
 """
         self.assertTrue(expected == capturedOutput.getvalue())
 
-    def test_5(self):
+    def test_no_lists(self):
         capturedOutput = StringIO.StringIO()
         sys.stdout = capturedOutput
         analyse_lists.analyse()
