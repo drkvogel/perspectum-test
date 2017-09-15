@@ -66,13 +66,3 @@ Strings processed: 5
 
 if __name__ == '__main__':
     unittest.main()
-
-        # print 'Expected: \"'+ repr(expected) + '\"'
-        # print "END"
-        # print 'Captured: \"'+ repr(captured.getvalue()) + '\"'
-        # print "END"
-
-        # print type(self.captured.getvalue())
-        # print 'Captured: \"'+ repr(self.captured.getvalue()) + '\"'
-
-        # print _unidiff_output(expected, captured.getvalue())

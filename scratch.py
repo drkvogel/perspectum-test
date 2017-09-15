@@ -144,3 +144,13 @@ print "END"
 # print "len(capturedOutput.getvalue()): " + str(len(capturedOutput.getvalue()))
 # print "type(capturedOutput.getvalue()): " + str(type(capturedOutput.getvalue()))
 # print self.unidiff_output(expected, capturedOutput.getvalue())
+
+        # print 'Expected: \"'+ repr(expected) + '\"'
+        # print "END"
+        # print 'Captured: \"'+ repr(captured.getvalue()) + '\"'
+        # print "END"
+
+        # print type(self.captured.getvalue())
+        # print 'Captured: \"'+ repr(self.captured.getvalue()) + '\"'
+
+        # print _unidiff_output(expected, captured.getvalue())
