@@ -113,8 +113,18 @@ def capture_output(func, *args):
 
 # analyse_lists_local(['g', 'gh', 'ghj', 'g'], ['j', 'ju', 'gh', 'gk', 'gn'])
 # analyse_lists_local(['g', 'gh', 'ghj', 'g', 'hh'], ['j', 'ju', 'gh', 'gk', 'gn'], ['g', 'ju', 'hh', 'hh'])
-captured = capture_output(analyse_lists.analyse, ['g', 'gh', 'ghj', 'g'], ['j',  'ju', 'gh', 'gk', 'gn'])
+# captured = capture_output(analyse_lists.analyse, ['g', 'gh', 'ghj', 'g'], ['j',  'ju', 'gh', 'gk', 'gn'])    capturedOutput = StringIO.StringIO()          # create StringIO object
+capturedOutput = StringIO.StringIO()          # create StringIO object
+sys.stdout = capturedOutput                   # redirect stdout.
 analyse_lists.analyse(['g', 'gh', 'ghj', 'g'], ['j', 'ju', 'gh', 'gk', 'gn'])
+# analyse_lists.analyse(['g', 'gh', 'ghj', 'g'], ['j', 'ju', 'gh', 'gk', 'gn'])
+sys.stdout = sys.__stdout__                   # reset redirect
+
+# print 'Expected: ', expected
+# print "END"
+print 'Captured: ', repr(capturedOutput.getvalue())
+print "END"
+# print unidiff_output(expected, capturedOutput.getvalue())
 # print captured
 
     # def test_2(self):
@@ -125,11 +135,6 @@ analyse_lists.analyse(['g', 'gh', 'ghj', 'g'], ['j', 'ju', 'gh', 'gk', 'gn'])
 # Number of unique strings: 7
 # Strings processed: 9
 # """
-#         print 'Expected: ', expected
-#         print "END"
-#         print 'Captured: ', captured
-#         print "END"
-#         # print _unidiff_output(expected, capturedOutput.getvalue())
 #         self.assertTrue(expected == captured)
 
 # print 'Expected: \"'+ repr(expected) + '\"'
