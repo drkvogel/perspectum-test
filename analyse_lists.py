@@ -48,7 +48,7 @@ def analyse(*lists):
     for i in range(0, len(lists)):
         lists_unique.append(set(lists[i])) #
 
-    # count occurrences of each string across all lists containing unique strings
+    # count occurrences of each string across all lists (containing unique strings)
     occurrence_count = dict()
     for a_list in lists_unique:
         for el in a_list:
@@ -58,20 +58,38 @@ def analyse(*lists):
                 occurrence_count[el] = occurrence_count[el] + 1
 
     # print 'Input: ' + str(lists)
+    # print "occurrence_count: " + str(occurrence_count)
     print 'Strings appearing in multiple lists: ',# + str(more_than_once)
-    for i, key in enumerate(occurrence_count):
-        if occurrence_count[key] > 1:
-            if i > 0:
-                sys.stdout.write(', ') # no space, no newline
-            sys.stdout.write('\'' + key + '\'')
+    # for i, key in enumerate(occurrence_count):
+    #     if occurrence_count[key] > 1:
+    #         if i > 0:
+    #             sys.stdout.write(', ') # no space, no newline
+    #         sys.stdout.write('\'' + key + '\'')
+
+    # print from generator
+    occurrence_generator = multiple_occurrence(occurrence_count)
+    for i, key in enumerate(occurrence_generator):
+        if i > 0:
+            sys.stdout.write(', ') # no space, no newline
+        sys.stdout.write('\'' + key + '\'')
     print
+    # print ', '.join(occurrence_generator)
+    # print ', '.join([])
+    
     print 'Number of unique strings: ' + str(len(unique_strings))
     print 'Strings processed: ' + str(len(all_strings))
+
+def multiple_occurrence(occurrence_count):
+    """generate list of strings that appear more than once"""
+    for i, key in enumerate(occurrence_count):
+        if occurrence_count[key] > 1:
+            yield key
 
 def test():
     analyse(['g', 'gh', 'ghj', 'g'], ['j', 'ju', 'gh', 'gk', 'gn'])
     analyse(['g', 'gh', 'ghj', 'g', 'hh'], ['j', 'ju', 'gh', 'gk', 'gn'], ['g', 'ju', 'hh', 'hh'])
     analyse(['g', 'gh', 'ghj', 'g', 'hh'])
+    analyse(['a', 'b'], [], [], ['b', 'c', 'a'], [], ['b'])
 
 if __name__ == '__main__':
     test()
