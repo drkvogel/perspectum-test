@@ -8,15 +8,12 @@ import analyse_lists
 class TestAnalyseLists(unittest.TestCase):
 
     def setUp(self):
-        # print "setUp"
         self.captured = StringIO.StringIO()
         sys.stdout = self.captured
-        # print type(self.captured.getvalue())
+
 
     def tearDown(self):
         sys.stdout = sys.__stdout__
-        # print "tearDown"
-        # print 'Captured: \"'+ repr(self.captured.getvalue()) + '\"'
 
     def test_1(self):
         analyse_lists.analyse(['g', 'gh', 'ghj', 'g'], ['j', 'ju', 'gh', 'gk', 'gn'])
@@ -25,7 +22,6 @@ Number of unique strings: 7
 Strings processed: 9
 """
         self.assertTrue(expected == self.captured.getvalue())
-        # self.assertTrue(expected == self.captured.getvalue())
 
     def test_2(self):
         analyse_lists.analyse(['g', 'gh', 'ghj', 'g', 'hh'], ['j', 'ju', 'gh', 'gk', 'gn'], ['g', 'ju', 'hh', 'hh'])
@@ -33,7 +29,6 @@ Strings processed: 9
 Number of unique strings: 8
 Strings processed: 14
 """
-        # print _unidiff_output(expected, captured.getvalue())
         self.assertTrue(expected == self.captured.getvalue())
 
     def test_3(self):
@@ -75,3 +70,8 @@ if __name__ == '__main__':
         # print "END"
         # print 'Captured: \"'+ repr(captured.getvalue()) + '\"'
         # print "END"
+
+        # print type(self.captured.getvalue())
+        # print 'Captured: \"'+ repr(self.captured.getvalue()) + '\"'
+
+        # print _unidiff_output(expected, captured.getvalue())
